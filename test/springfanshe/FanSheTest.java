@@ -1,6 +1,7 @@
 package springfanshe;
 
 import org.junit.Test;
+import spring02ouhe.Usb;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class FanSheTest {
 
         //新兴的反射创建
         //1.找到类的出处 并创建对象  不常用
-        try {
+       /* try {
             Date date1 = date.getClass().newInstance();
             System.out.println("date1 = " + date1);
         } catch (InstantiationException e) {
@@ -23,14 +24,39 @@ public class FanSheTest {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+*/
 
-        //2.以文本形式找到出处，很常用
-        try {
-            Class<Date> aClass = (Class<Date>) Class.forName("java.util.Date");
-            System.out.println("aClass = " + aClass.newInstance());
-        } catch (Exception e) {
-            e.printStackTrace();
+
+
+
+                //2.以文本形式找到出处，很常用
+              /*  try {
+                    Class<Date> aClass = (Class<Date>) Class.forName("java.util.Date");
+                    System.out.println("aClass = " + aClass.newInstance());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }*/
+
+       //路径  =包名.类名
+        String[] aa={"spring02ouhe.Computer","spring02ouhe.Mp4","spring02ouhe.MyTv"};
+        for(String a:aa) {
+            Class<Usb> aClass = null;
+            try {
+                aClass = (Class<Usb>) Class.forName(a);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                aClass.newInstance().usbData();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
+
+
 
         //3.直接.class
        Class c= Date.class;
